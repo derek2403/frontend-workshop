@@ -8,6 +8,8 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         '40': 'repeat(40, minmax(0, 1fr))',
+        '20': 'repeat(20, minmax(0, 1fr))',
+        '7': 'repeat(7, minmax(0, 1fr))',
       },
       fontFamily: {
         'fontdiner': ['"Fontdiner Swanky"', 'serif'],
