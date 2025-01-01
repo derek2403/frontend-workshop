@@ -56,7 +56,7 @@ const Checkerboard = () => {
   };
 
   return (
-    <div className="grid grid-cols-40 w-full h-full bg-gray-900 p-2" style={{ height: '100vh' }}>
+    <div className="grid grid-cols-40 w-screen h-screen bg-gray-900">
       {boxes.map((_, index) => (
         <div
           key={index}

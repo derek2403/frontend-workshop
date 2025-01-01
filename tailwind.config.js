@@ -43,6 +43,10 @@ module.exports = {
         'yellow-500': '#eab308',
         'purple-600': '#9333ea',
       },
+      fontFamily: {
+        'moirai': ['"Moirai One"', 'serif'],
+        'fontdiner': ['"Fontdiner Swanky"', 'serif'],
+      },
     },
   },
   plugins: [],
