@@ -4,6 +4,7 @@ import Logo from '../components/Logo';
 import Checkerboard from '../components/Checkerboard';
 import MobileCheckerboard from '../components/MobileCheckerboard';
 import ConnectWallet from '../components/ConnectWallet';
+import GameModeSelector from '../components/GameModeSelector';
 
 const useDeviceDetect = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -36,6 +37,7 @@ export default function Home() {
         <>
           <ConnectWallet isMobile={isMobile} />
           <Logo isMobile={isMobile} />
+          <GameModeSelector isMobile={isMobile} />
           {isMobile ? (
             <div className="w-full h-screen">
               <MobileCheckerboard />

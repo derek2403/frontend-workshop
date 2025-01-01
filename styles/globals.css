@@ -62,3 +62,20 @@ html, body {
 .wallet-adapter-modal-wrapper {
   font-family: 'Fontdiner Swanky', serif !important;
 }
+
+.game-mode-card {
+  @apply relative overflow-hidden rounded-lg transition-all duration-300;
+}
+
+.game-mode-card:hover {
+  @apply transform scale-105 shadow-2xl;
+  box-shadow: 0 0 25px rgba(65,30,125,0.4);
+}
+
+.game-mode-image {
+  @apply w-full h-full object-cover transition-transform duration-300;
+}
+
+.game-mode-card:hover .game-mode-image {
+  @apply transform scale-110;
+}
