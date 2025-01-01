@@ -3,9 +3,9 @@ import Checkerboard from '../components/Checkerboard';
 
 export default function Home() {
   return (
-    <main className="w-screen h-screen overflow-hidden relative">
+    <div className="w-screen h-screen overflow-hidden relative bg-gray-900">
       <Logo />
       <Checkerboard />
-    </main>
+    </div>
   );
 }

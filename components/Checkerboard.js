@@ -56,7 +56,7 @@ const Checkerboard = () => {
   };
 
   return (
-    <div className="grid grid-cols-40 w-screen h-screen bg-gray-900">
+    <div className="absolute inset-0 grid grid-cols-40 w-full h-full">
       {boxes.map((_, index) => (
         <div
           key={index}

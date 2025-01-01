@@ -5,14 +5,16 @@ const Logo = () => {
   
   return (
     <div className="absolute top-[100px] left-1/2 transform -translate-x-1/2 z-10">
-      <h1 className="text-9xl font-fontdiner flex text-indigo-800">
+      <h1 className="text-9xl font-fontdiner flex">
         {title.split('').map((letter, index) => (
           <span 
             key={index}
-            className="drop-shadow-[0_0_15px_rgba(79,70,229,0.4)] animate-wavy"
+            className="animate-wavy"
             style={{ 
               animationDelay: `${index * 0.1}s`,
-              textShadow: '3px 3px 0px rgba(79,70,229,0.3)'
+              color: '#411e7d',
+              textShadow: '3px 3px 0px rgba(0,0,0,0.2)',
+              filter: 'drop-shadow(0 0 15px rgba(65,30,125,0.4))'
             }}
           >
             {letter === ' ' ? '\u00A0' : letter}
