@@ -5,25 +5,69 @@ const Checkerboard = () => {
   const cols = 40;
   const boxes = Array.from({ length: rows * cols });
 
-  // Softer Tetris colors
-  const colors = ['bg-blue-300', 'bg-green-300', 'bg-red-300', 'bg-yellow-300', 'bg-purple-300'];
-  const hoverColors = ['hover:bg-blue-500', 'hover:bg-green-500', 'hover:bg-red-500', 'hover:bg-yellow-600', 'hover:bg-purple-500'];
-  const glowColors = ['shadow-blue-500', 'shadow-green-500', 'shadow-red-500', 'shadow-yellow-600', 'shadow-purple-500'];
+  // Enhanced 3D colors with base shadows
+  const colors = [
+    'bg-blue-300 shadow-inner', 
+    'bg-green-300 shadow-inner', 
+    'bg-red-300 shadow-inner', 
+    'bg-yellow-300 shadow-inner', 
+    'bg-purple-300 shadow-inner'
+  ];
+  
+  // More intense hover colors
+  const hoverColors = [
+    'bg-blue-600', 
+    'bg-green-600', 
+    'bg-red-600', 
+    'bg-yellow-500', 
+    'bg-purple-600'
+  ];
+  
+  // Enhanced glow effects
+  const glowColors = [
+    'shadow-[0_0_25px_rgba(37,99,235,0.8)]', 
+    'shadow-[0_0_25px_rgba(22,163,74,0.8)]', 
+    'shadow-[0_0_25px_rgba(220,38,38,0.8)]', 
+    'shadow-[0_0_25px_rgba(234,179,8,0.8)]',
+    'shadow-[0_0_25px_rgba(147,51,234,0.8)]'
+  ];
 
   const [boxColors, setBoxColors] = useState([]);
+  const [hoveredBoxes, setHoveredBoxes] = useState(new Set());
 
   useEffect(() => {
     const generatedColors = boxes.map(() => Math.floor(Math.random() * colors.length));
     setBoxColors(generatedColors);
   }, []);
 
+  const handleMouseEnter = (index) => {
+    setHoveredBoxes(prev => {
+      const newSet = new Set(prev);
+      newSet.add(index);
+      setTimeout(() => {
+        setHoveredBoxes(current => {
+          const updated = new Set(current);
+          updated.delete(index);
+          return updated;
+        });
+      }, 2000);
+      return newSet;
+    });
+  };
+
   return (
-    <div className="grid grid-cols-40 w-full h-full" style={{ height: '100vh' }}>
+    <div className="grid grid-cols-40 w-full h-full bg-gray-900 p-2" style={{ height: '100vh' }}>
       {boxes.map((_, index) => (
         <div
           key={index}
-          className={`w-full ${colors[boxColors[index]]} ${hoverColors[boxColors[index]]} transition-all duration-300 ${glowColors[boxColors[index]]} hover:shadow-2xl`}
-          style={{ paddingBottom: '100%', animation: 'hoverEffect 3s forwards' }}
+          onMouseEnter={() => handleMouseEnter(index)}
+          className={`w-full relative 
+            ${colors[boxColors[index]]} transition-all duration-300 
+            ${hoveredBoxes.has(index) ? 
+              `${hoverColors[boxColors[index]]} ${glowColors[boxColors[index]]}` : 
+              ''
+            }`}
+          style={{ paddingBottom: '100%' }}
         />
       ))}
     </div>
