@@ -3,7 +3,7 @@ import React from 'react';
 const Logo = ({ isMobile }) => {
   if (isMobile) {
     return (
-      <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10">
+      <div className="absolute top-[100px] left-1/2 transform -translate-x-1/2 z-10">
         <div className="flex flex-col items-center">
           <h1 className="text-7xl font-fontdiner">
             <span 

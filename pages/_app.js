@@ -10,21 +10,35 @@ import dynamic from 'next/dynamic';
 import '@solana/wallet-adapter-react-ui/styles.css';
 import '../styles/globals.css';
 
-// Dynamically import wallet components to prevent SSR
-const WalletConnectionProvider = dynamic(
-  () => import('../components/WalletConnectionProvider'),
-  {
-    ssr: false,
-  }
+// Dynamically import WalletModalProvider to prevent SSR issues
+const WalletModalProviderComponent = dynamic(
+  () => import('@solana/wallet-adapter-react-ui').then(mod => mod.WalletModalProvider),
+  { ssr: false }
 );
 
 function MyApp({ Component, pageProps }) {
+  // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
+  const network = WalletAdapterNetwork.Devnet;
+  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+
+  const wallets = useMemo(
+    () => [
+      new PhantomWalletAdapter(),
+      new SolflareWalletAdapter(),
+    ],
+    [network]
+  );
+
   return (
-    <WalletConnectionProvider>
-      <WalletProvider>
-        <Component {...pageProps} />
-      </WalletProvider>
-    </WalletConnectionProvider>
+    <ConnectionProvider endpoint={endpoint}>
+      <SolanaWalletProvider wallets={wallets} autoConnect>
+        <WalletModalProviderComponent>
+          <WalletProvider>
+            <Component {...pageProps} />
+          </WalletProvider>
+        </WalletModalProviderComponent>
+      </SolanaWalletProvider>
+    </ConnectionProvider>
   );
 }
 
