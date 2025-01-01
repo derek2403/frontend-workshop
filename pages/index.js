@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Logo from '../components/Logo';
 import Checkerboard from '../components/Checkerboard';
 import MobileCheckerboard from '../components/MobileCheckerboard';
+import ConnectWallet from '../components/ConnectWallet';
 
 const useDeviceDetect = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -33,6 +34,7 @@ export default function Home() {
     <div className="w-screen h-screen overflow-hidden bg-gray-900">
       {isClient && (
         <>
+          <ConnectWallet isMobile={isMobile} />
           <Logo isMobile={isMobile} />
           {isMobile ? (
             <div className="w-full h-screen">

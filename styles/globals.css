@@ -37,3 +37,28 @@ html, body {
   animation: wavyJump 2s infinite ease-in-out;
   display: inline-block;
 }
+
+.wallet-adapter-button-custom {
+  background-color: #411e7d !important;
+  color: white !important;
+  font-family: 'Fontdiner Swanky', serif !important;
+  border-radius: 8px !important;
+  padding: 12px 20px !important;
+  font-size: 16px !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.wallet-adapter-button-custom:hover {
+  background-color: #5a2ba8 !important;
+  box-shadow: 0 0 15px rgba(65,30,125,0.4) !important;
+}
+
+.wallet-adapter-button-connected {
+  background-color: #2a1352 !important;
+}
+
+.wallet-adapter-modal-wrapper {
+  font-family: 'Fontdiner Swanky', serif !important;
+}
