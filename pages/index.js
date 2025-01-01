@@ -5,6 +5,7 @@ import Checkerboard from '../components/Checkerboard';
 import MobileCheckerboard from '../components/MobileCheckerboard';
 import ConnectWallet from '../components/ConnectWallet';
 import GameModeSelector from '../components/GameModeSelector';
+import PlayButton from '../components/PlayButton';
 
 const useDeviceDetect = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -26,6 +27,7 @@ const useDeviceDetect = () => {
 export default function Home() {
   const isMobile = useDeviceDetect();
   const [isClient, setIsClient] = useState(false);
+  const [showGameModes, setShowGameModes] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -37,7 +39,12 @@ export default function Home() {
         <>
           <ConnectWallet isMobile={isMobile} />
           <Logo isMobile={isMobile} />
-          <GameModeSelector isMobile={isMobile} />
+          {!showGameModes && (
+            <div className="absolute top-[320px] left-1/2 transform -translate-x-1/2 z-20">
+              <PlayButton isMobile={isMobile} onPlay={() => setShowGameModes(true)} />
+            </div>
+          )}
+          {showGameModes && <GameModeSelector isMobile={isMobile} />}
           {isMobile ? (
             <div className="w-full h-screen">
               <MobileCheckerboard />
