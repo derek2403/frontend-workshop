@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TetrisGame from './TetrisGame';
+import Casual from './Casual';
 
 const gameModes = [
   {
@@ -50,12 +51,17 @@ const GameModeSelector = ({ isMobile }) => {
             ))}
           </div>
         </div>
-        {selectedMode === 'Casual' && (
+        {selectedMode === 'Casual' ? (
+          <Casual 
+            onClose={() => setSelectedMode(null)} 
+            isMobile={isMobile} 
+          />
+        ) : selectedMode === 'Ranked' ? (
           <TetrisGame 
             onClose={() => setSelectedMode(null)} 
             isMobile={isMobile} 
           />
-        )}
+        ) : null}
       </>
     );
   }
@@ -65,10 +71,10 @@ const GameModeSelector = ({ isMobile }) => {
       <div className="absolute top-[320px] left-1/2 transform -translate-x-1/2 z-20 w-full max-w-6xl px-8">
         <div className="grid grid-cols-4 gap-10">
           {gameModes.map((mode) => (
-            <div 
+            <button 
               key={mode.name}
               onClick={() => handleModeSelect(mode.name)}
-              className="relative group cursor-pointer transform transition-all duration-300 hover:scale-105"
+              className="relative group cursor-pointer transform transition-all duration-300 hover:scale-105 w-full"
             >
               <div className="aspect-square relative rounded-lg overflow-hidden bg-purple-900">
                 {/* Placeholder for image - replace src with actual images */}
@@ -88,15 +94,22 @@ const GameModeSelector = ({ isMobile }) => {
                   </p>
                 </div>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
-      {selectedMode === 'Casual' && (
-        <TetrisGame 
-          onClose={() => setSelectedMode(null)} 
-          isMobile={isMobile} 
-        />
+      {selectedMode && (
+        selectedMode === 'Casual' ? (
+          <Casual 
+            onClose={() => setSelectedMode(null)} 
+            isMobile={isMobile} 
+          />
+        ) : selectedMode === 'Ranked' ? (
+          <TetrisGame 
+            onClose={() => setSelectedMode(null)} 
+            isMobile={isMobile} 
+          />
+        ) : null
       )}
     </>
   );

@@ -101,6 +101,7 @@ const TetrisGame = ({ onClose, isMobile }) => {
   const [isClient, setIsClient] = useState(false);
   const gameRef = useRef(null);
   const [gameScene, setGameScene] = useState(null);
+  const SCORE_TO_BEAT = 14500;
 
   const [gamePoolPDA] = PublicKey.findProgramAddressSync(
     [Buffer.from(GAME_POOL_SEED)],
@@ -306,6 +307,10 @@ const TetrisGame = ({ onClose, isMobile }) => {
               <div className="space-y-1">
                 <h2 className="text-xs font-bold text-white">SCORE</h2>
                 <p className="text-lg font-mono text-white" id="score">0</p>
+                <div className="flex flex-col items-end">
+                  <p className="text-[10px] text-gray-400">Score to beat</p>
+                  <p className="text-xs font-mono text-purple-400">{SCORE_TO_BEAT}</p>
+                </div>
               </div>
             </div>
             
